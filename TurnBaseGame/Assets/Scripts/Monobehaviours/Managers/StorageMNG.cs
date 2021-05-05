@@ -46,7 +46,7 @@ public class StorageMNG : MonoBehaviour
         CharIcon[] charIcons = GetComponentsInChildren<CharIcon>();//collects all icons
         foreach (CharIcon icon in charIcons)
         {
-            if (!icon.deployed)
+            if (!icon.charAttributes.isDeployed)
                 icon.backGround.sprite = defaultIcon;//sets default background to the icon
         }
         clickedIcon.backGround.sprite = selectedIcon;//sets green background to the icon

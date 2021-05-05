@@ -104,6 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: 5
   heroData: {fileID: 11400000, guid: 5ad4acd3dcf343c47aaaa40a51cb0d39, type: 2}
+  stack: {fileID: 4226209342818763934}
 --- !u!114 &5040478733941216655
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -307,3 +308,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 7869706023209151558}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &4226209342818763934 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6309627668417767640, guid: d259d94862141474ca01ea0cbc696f53,
+    type: 3}
+  m_PrefabInstance: {fileID: 7869706023209151558}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0bb23fe70b8a9f43bf94045af6f4ec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

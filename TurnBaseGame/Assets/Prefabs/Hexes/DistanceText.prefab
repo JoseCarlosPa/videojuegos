@@ -94,3 +94,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   distanceFromStartingPoint: 20
   stepsToGo: 1
+  defaultDistance: 20
+  defaultstepsToGo: 1

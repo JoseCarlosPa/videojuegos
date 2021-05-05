@@ -6,7 +6,17 @@ public class IfItIsTarget : MonoBehaviour, IEvaluateHex
 {
     public bool EvaluateHex(BattleHex evaluatedHex)
     {
-        return evaluatedHex.GetComponentInChildren<Enemy>() != null;
+        //check whether the hero is on the hex or not and
+        //whether this object contains the Enemy component
+        if (BattleController.currentAtacker.GetComponent<Enemy>() == null)
+        {
+            return evaluatedHex.GetComponentInChildren<Enemy>() != null;
+        }
+        else
+        {
+            return evaluatedHex.GetComponentInChildren<Hero>() != null &&
+            evaluatedHex.GetComponentInChildren<Enemy>() == null;
+        }
     }
 
 }

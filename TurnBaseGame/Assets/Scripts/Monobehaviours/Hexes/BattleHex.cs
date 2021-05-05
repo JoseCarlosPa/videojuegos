@@ -92,6 +92,9 @@ public class BattleHex : MonoBehaviour
         distanceText.GetComponent<Text>().color = new Color32(255, 255, 255, 0);//hides numbers
         currentState.color = new Color32(255, 255, 255, 0);//hides the frame
         Landscape.color = new Color32(255, 255, 255, 255);//hides the optimal path
-        //distanceText.stepsToGoCurrent = distanceText.stepsToGo;
+        distanceText.distanceFromStartingPoint = distanceText.defaultDistance;
+        distanceText.stepsToGo = distanceText.defaultstepsToGo;
+        potencialTarget = false;
     }
 }
+    

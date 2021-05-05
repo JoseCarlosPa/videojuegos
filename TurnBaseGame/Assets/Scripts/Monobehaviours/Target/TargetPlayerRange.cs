@@ -8,6 +8,7 @@ public class TargetPlayerRange : MonoBehaviour, IDefineTarget
     List<BattleHex> neighboursToCheck;//collects neighbouring hexes that match the search criteria
     IEvaluateHex checkHex = new IfItIsTarget();//refers to the interface to access the behavior we need 
     IInitialHexes getInitialHexes = new InitialTarget();
+    Turn turn;
     public void DefineTargets(Hero currentAtacker)
     {
         if (TargetsNearby(currentAtacker) == false)//check if there is an enemy nearby
@@ -42,5 +43,16 @@ public class TargetPlayerRange : MonoBehaviour, IDefineTarget
         IAdjacentFinder adjFinder = new MarkTargets();//rule for checking the hex
         //check the entire attack area
         currentAtacker.GetComponent<AvailablePos>().GetAvailablePositions(stepsLimit, adjFinder, getInitialHexes);
+        CheckIfItIsNewTurn();
+    }
+    private void CheckIfItIsNewTurn()
+    {
+        BattleController battleController = FindObjectOfType<BattleController>();
+        if (battleController.IsLookingForPotentialTargets().Count == 0
+            && BattleController.currentAtacker.heroData.CurrentVelocity == 0)
+        {
+            turn = FindObjectOfType<Turn>();
+            turn.TurnIsCompleted();
+        }
     }
 }

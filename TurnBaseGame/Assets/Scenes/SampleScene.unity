@@ -3455,6 +3455,11 @@ PrefabInstance:
       propertyPath: battleHexState
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8557958047917253443, guid: 1ab606c14cbac194ba97ac1d52a0b082,
+        type: 3}
+      propertyPath: regimentPosition
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ab606c14cbac194ba97ac1d52a0b082, type: 3}
 --- !u!224 &154942492 stripped
@@ -4659,6 +4664,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -948
+      objectReference: {fileID: 0}
+    - target: {fileID: 2951246827461586540, guid: b3ab563407fe55c4e8edc5b09ca9fe57,
+        type: 3}
+      propertyPath: regimentPosition
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b3ab563407fe55c4e8edc5b09ca9fe57, type: 3}
@@ -8535,7 +8545,7 @@ PrefabInstance:
     - target: {fileID: 8557958047917253443, guid: 1ab606c14cbac194ba97ac1d52a0b082,
         type: 3}
       propertyPath: regimentPosition
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ab606c14cbac194ba97ac1d52a0b082, type: 3}
@@ -9620,7 +9630,7 @@ PrefabInstance:
     - target: {fileID: 4716577605230422642, guid: 09b9668e3ec9df8489bbe2bbe5094ece,
         type: 3}
       propertyPath: regimentPosition
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 09b9668e3ec9df8489bbe2bbe5094ece, type: 3}
@@ -10219,6 +10229,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557958047917253443, guid: 1ab606c14cbac194ba97ac1d52a0b082,
+        type: 3}
+      propertyPath: regimentPosition
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ab606c14cbac194ba97ac1d52a0b082, type: 3}
@@ -12525,6 +12540,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -976
       objectReference: {fileID: 0}
+    - target: {fileID: 2951246827461586540, guid: b3ab563407fe55c4e8edc5b09ca9fe57,
+        type: 3}
+      propertyPath: regimentPosition
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5672354788133879116, guid: b3ab563407fe55c4e8edc5b09ca9fe57,
         type: 3}
       propertyPath: battleHexState
@@ -12668,7 +12688,7 @@ PrefabInstance:
     - target: {fileID: 8557958047917253443, guid: 1ab606c14cbac194ba97ac1d52a0b082,
         type: 3}
       propertyPath: regimentPosition
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ab606c14cbac194ba97ac1d52a0b082, type: 3}
@@ -17207,6 +17227,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fd3056f18de6ebf4793ce0811f8badf4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  stepsToCheckWholeField: 16
+  potentialTargets: []
+  events: {fileID: 0}
 --- !u!4 &898410032
 Transform:
   m_ObjectHideFlags: 0
@@ -17233,6 +17256,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 637a1e38868d68d46b13a6226f95addb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gameOverPanel: {fileID: 1858564985979018368, guid: ba35d5fe3cc6fbf4ea864ee4a4b80d6e,
+    type: 3}
 --- !u!114 &898410034
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17396,6 +17421,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -1031
+      objectReference: {fileID: 0}
+    - target: {fileID: 6407343185347908885, guid: 556d8efb7abba944c9909d102f153324,
+        type: 3}
+      propertyPath: regimentPosition
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 556d8efb7abba944c9909d102f153324, type: 3}
@@ -17652,6 +17682,11 @@ PrefabInstance:
       propertyPath: battleHexState
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8557958047917253443, guid: 1ab606c14cbac194ba97ac1d52a0b082,
+        type: 3}
+      propertyPath: regimentPosition
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ab606c14cbac194ba97ac1d52a0b082, type: 3}
 --- !u!224 &937167889 stripped
@@ -17781,6 +17816,11 @@ PrefabInstance:
         type: 3}
       propertyPath: battleHexState
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557958047917253443, guid: 1ab606c14cbac194ba97ac1d52a0b082,
+        type: 3}
+      propertyPath: regimentPosition
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ab606c14cbac194ba97ac1d52a0b082, type: 3}
@@ -18321,6 +18361,11 @@ PrefabInstance:
         type: 3}
       propertyPath: battleHexState
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557958047917253443, guid: 1ab606c14cbac194ba97ac1d52a0b082,
+        type: 3}
+      propertyPath: regimentPosition
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ab606c14cbac194ba97ac1d52a0b082, type: 3}
@@ -19120,7 +19165,7 @@ PrefabInstance:
     - target: {fileID: 8557958047917253443, guid: 1ab606c14cbac194ba97ac1d52a0b082,
         type: 3}
       propertyPath: regimentPosition
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ab606c14cbac194ba97ac1d52a0b082, type: 3}
@@ -20573,7 +20618,7 @@ PrefabInstance:
     - target: {fileID: 8557958047917253443, guid: 1ab606c14cbac194ba97ac1d52a0b082,
         type: 3}
       propertyPath: regimentPosition
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ab606c14cbac194ba97ac1d52a0b082, type: 3}
@@ -21144,6 +21189,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -1046
+      objectReference: {fileID: 0}
+    - target: {fileID: 7115888064738349138, guid: e5f35481071d3954fbce218727c486e7,
+        type: 3}
+      propertyPath: regimentPosition
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5f35481071d3954fbce218727c486e7, type: 3}
@@ -23265,6 +23315,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -1072
       objectReference: {fileID: 0}
+    - target: {fileID: 7115888064738349138, guid: e5f35481071d3954fbce218727c486e7,
+        type: 3}
+      propertyPath: regimentPosition
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e5f35481071d3954fbce218727c486e7, type: 3}
 --- !u!224 &1243073029 stripped
@@ -24059,6 +24114,11 @@ PrefabInstance:
         type: 3}
       propertyPath: battleHexState
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557958047917253443, guid: 1ab606c14cbac194ba97ac1d52a0b082,
+        type: 3}
+      propertyPath: regimentPosition
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8434018787174728638, guid: 1ab606c14cbac194ba97ac1d52a0b082,
         type: 3}
@@ -26120,6 +26180,11 @@ PrefabInstance:
       propertyPath: battleHexState
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 8557958047917253443, guid: 1ab606c14cbac194ba97ac1d52a0b082,
+        type: 3}
+      propertyPath: regimentPosition
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ab606c14cbac194ba97ac1d52a0b082, type: 3}
 --- !u!224 &1316562441 stripped
@@ -26373,7 +26438,7 @@ PrefabInstance:
     - target: {fileID: 8557958047917253443, guid: 1ab606c14cbac194ba97ac1d52a0b082,
         type: 3}
       propertyPath: regimentPosition
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ab606c14cbac194ba97ac1d52a0b082, type: 3}
@@ -27398,6 +27463,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 8557958047917253443, guid: 1ab606c14cbac194ba97ac1d52a0b082,
+        type: 3}
+      propertyPath: regimentPosition
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ab606c14cbac194ba97ac1d52a0b082, type: 3}
 --- !u!1001 &1358119797
@@ -27650,6 +27720,11 @@ PrefabInstance:
     - target: {fileID: 953670727414051332, guid: 1ab606c14cbac194ba97ac1d52a0b082,
         type: 3}
       propertyPath: isStartingHex
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8557958047917253443, guid: 1ab606c14cbac194ba97ac1d52a0b082,
+        type: 3}
+      propertyPath: regimentPosition
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6303476008843833060, guid: 1ab606c14cbac194ba97ac1d52a0b082,
@@ -36435,6 +36510,11 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: -1021
       objectReference: {fileID: 0}
+    - target: {fileID: 7115888064738349138, guid: e5f35481071d3954fbce218727c486e7,
+        type: 3}
+      propertyPath: regimentPosition
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 953670727414051337, guid: 09b9668e3ec9df8489bbe2bbe5094ece,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -37601,7 +37681,7 @@ PrefabInstance:
     - target: {fileID: 8557958047917253443, guid: 1ab606c14cbac194ba97ac1d52a0b082,
         type: 3}
       propertyPath: regimentPosition
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ab606c14cbac194ba97ac1d52a0b082, type: 3}
@@ -38877,6 +38957,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_AnchoredPosition.y
       value: -977
+      objectReference: {fileID: 0}
+    - target: {fileID: 2951246827461586540, guid: b3ab563407fe55c4e8edc5b09ca9fe57,
+        type: 3}
+      propertyPath: regimentPosition
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8434018787174728638, guid: b3ab563407fe55c4e8edc5b09ca9fe57,
         type: 3}
@@ -41624,7 +41709,7 @@ PrefabInstance:
     - target: {fileID: 7115888064738349138, guid: e5f35481071d3954fbce218727c486e7,
         type: 3}
       propertyPath: regimentPosition
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 953670727414051337, guid: 09b9668e3ec9df8489bbe2bbe5094ece,
         type: 3}
@@ -41864,7 +41949,7 @@ PrefabInstance:
     - target: {fileID: 8557958047917253443, guid: 1ab606c14cbac194ba97ac1d52a0b082,
         type: 3}
       propertyPath: regimentPosition
-      value: 0
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ab606c14cbac194ba97ac1d52a0b082, type: 3}

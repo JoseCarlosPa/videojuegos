@@ -25,6 +25,7 @@ public class Deployer : MonoBehaviour
     {
         Hero regiment = readyForDeploymentIcon.charAttributes.heroSO;// gets the hero prefab
         Hero fighter = Instantiate(regiment, parentObject.Landscape.transform);//instantiates the hero and
+        fighter.GetComponent<Move>().ManageSortingLayer(parentObject);
         //returns a hero object
         parentObject.CleanUpDeploymentPosition();//hides the checkmark and disables the collider
         readyForDeploymentIcon.HeroIsDeployed();//marks the icon in gray
@@ -74,5 +75,8 @@ public class Deployer : MonoBehaviour
     {
         Hero enemy = Instantiate(charAttributes.heroSO, hexPosition.transform);//instantiates an enemy
         enemy.gameObject.AddComponent<Enemy>();//adds Enemy script to a hero object defined as an enemy
+
+        //attaches the AllPosForGroundAI script to a hero object defined as an enemy
+        enemy.gameObject.AddComponent<AllPosForGroundAI>();
     }
 }

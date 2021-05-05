@@ -19,7 +19,8 @@ public class FreezingAttack : MonoBehaviour, IAttacking
 
     void Freeze(Hero Target)
     {
+        print(2323);
         Target.heroData.InitiativeCurrent = 0;
-        Target.GetComponent<SpriteRenderer>().color = new Color32(135, 255, 255, 255);
+        Target.GetComponent<SpriteRenderer>().color = new Color32(5, 255, 255, 255);
     }
 }

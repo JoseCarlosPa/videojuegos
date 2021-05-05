@@ -117,6 +117,8 @@ MonoBehaviour:
   isStartingHex: 0
   isNeighboringHex: 0
   isIncluded: 0
+  potencialTarget: 0
+  lookingForTarget: 0
 --- !u!1 &5162809251990262767
 GameObject:
   m_ObjectHideFlags: 0
@@ -250,6 +252,11 @@ PrefabInstance:
     - target: {fileID: 4316948777353173103, guid: f175a8da59c798a43861a8e55797073e,
         type: 3}
       propertyPath: stepsToGo
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4316948777353173103, guid: f175a8da59c798a43861a8e55797073e,
+        type: 3}
+      propertyPath: defaultstepsToGo
       value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []

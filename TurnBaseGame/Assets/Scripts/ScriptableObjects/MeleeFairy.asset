@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MeleeFairy
   m_EditorClassIdentifier: 
   velocity: 3
-  initiative: 2
+  initiative: 3
   hp: 12
   atack: 12
   resistance: 1
@@ -23,3 +23,4 @@ MonoBehaviour:
   isFlying: 0
   heroSprite: {fileID: 21300000, guid: b3dcfdc1aa2f5b04b831b41430e714e8, type: 3}
   heroSO: {fileID: 8022785805967587069, guid: 0d1a5f3a54c683d419ab9cb30b07cd1f, type: 3}
+  isDeployed: 1

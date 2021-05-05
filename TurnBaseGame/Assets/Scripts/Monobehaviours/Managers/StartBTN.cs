@@ -43,7 +43,7 @@ public class StartBTN : MonoBehaviour
         int grayIcons = 0;//start with zero in case of multiple use of the method
         foreach (CharIcon icon in storage.charIcons)//all icons are stored in storage class
         {
-            if (icon.deployed)
+            if (icon.charAttributes.isDeployed)
             {
                 grayIcons++;//adds one to the number if the regiment is deployed
             }

@@ -12,14 +12,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fc8feab6f45c63d48ac2b0a2b231aa38, type: 3}
   m_Name: Knight
   m_EditorClassIdentifier: 
-  velocity: 2
-  initiative: 2
+  velocity: 5
+  initiative: 5
   hp: 25
-  atack: 200
+  atack: 400
   resistance: 3
-  stack: 40
+  stack: 120
   atackdistanse: 1
   isRanger: 0
   isFlying: 0
   heroSprite: {fileID: 21300000, guid: 3361c58d9e5019e4ba31fecd30dfb76e, type: 3}
   heroSO: {fileID: -5002286797929634964, guid: 708661c60d236ba4092747e18f983107, type: 3}
+  isDeployed: 1

@@ -104,7 +104,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   velocity: 5
   heroData: {fileID: 11400000, guid: c6f0880fda51f6743a63507f7385b271, type: 2}
-  stack: {fileID: 0}
+  stack: {fileID: 949128926158275559}
   arrow: {fileID: 6290354668400395038, guid: a66fafa40eacb794d82b044962492b42, type: 3}
   initialPosCorrection: {x: 0, y: 0.7, z: 0}
 --- !u!114 &5040478733941216655
@@ -172,6 +172,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7021879187153841050}
     m_Modifications:
+    - target: {fileID: 1480757908801795725, guid: d259d94862141474ca01ea0cbc696f53,
+        type: 3}
+      propertyPath: m_Name
+      value: Stack
+      objectReference: {fileID: 0}
     - target: {fileID: 6225424731648142226, guid: d259d94862141474ca01ea0cbc696f53,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -277,11 +282,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
-    - target: {fileID: 1480757908801795725, guid: d259d94862141474ca01ea0cbc696f53,
-        type: 3}
-      propertyPath: m_Name
-      value: Stack
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d259d94862141474ca01ea0cbc696f53, type: 3}
 --- !u!224 &927338667140415661 stripped
@@ -290,3 +290,15 @@ RectTransform:
     type: 3}
   m_PrefabInstance: {fileID: 6538020862051887935}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &949128926158275559 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6309627668417767640, guid: d259d94862141474ca01ea0cbc696f53,
+    type: 3}
+  m_PrefabInstance: {fileID: 6538020862051887935}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0bb23fe70b8a9f43bf94045af6f4ec8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

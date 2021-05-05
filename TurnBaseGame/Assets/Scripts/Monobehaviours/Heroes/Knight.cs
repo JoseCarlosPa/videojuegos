@@ -22,6 +22,7 @@ public override IAdjacentFinder GetTypeOfHero()
     }
     public override void HeroIsAtacking()//starts the attack
     {
+        base.HeroIsAtacking();
         GetComponent<Animator>().SetTrigger("isAttacking");
     }
 }

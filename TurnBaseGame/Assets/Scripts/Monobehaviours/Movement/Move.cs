@@ -29,6 +29,7 @@ public class Move : MonoBehaviour
     }
     public void StartsMoving()
     {
+        battleController.events.gameObject.SetActive(false);//disables click response
         battleController.CleanField();//sets the initial state to all active hexes
         currentStep = 0;//updates the variable value to start with the first hex of the optimal path
         totalSteps = path.Count - 1;//number of hexes included in optimal path, used as an index
@@ -48,6 +49,7 @@ public class Move : MonoBehaviour
         transform.position = Vector3.MoveTowards(transform.position, targetPos,
                         speedOfAnim * Time.deltaTime);//moves a hero in the given coordinates
         ManageSteps();
+        ManageSortingLayer(path[currentStep].GetComponentInParent   <BattleHex>());
     }
     private void ManageSteps()//changes the value of the currentStep variable depending 
                               //on the distance to the current target
@@ -69,7 +71,9 @@ public class Move : MonoBehaviour
         isMoving = !isMoving;//reverses the value of a variable
         transform.parent = path[currentStep].transform;
         hero.GetComponent<Animator>().SetBool("IsMoving", false);//stops movement animation
+        hero.heroData.CurrentVelocity = 0;
         hero.DefineTargets();
+        battleController.events.gameObject.SetActive(true);//enables click response
     }
     internal void ControlDirection(Vector3 targetPos)
     {
@@ -81,5 +85,14 @@ public class Move : MonoBehaviour
             heroSprite.flipX = !heroSprite.flipX;//rotates a sprite of the hero
             lookingToTheRight = !lookingToTheRight;//sets the opposite value for a variable
         }
+    }
+    internal void ManageSortingLayer(BattleHex targetHex)
+    {
+        heroSprite = GetComponent<SpriteRenderer>();
+        Canvas canvasOfStack = GetComponentInChildren<Canvas>();
+        int currentLayer = 16 - targetHex.verticalCoordinate;
+        canvasOfStack.sortingOrder = currentLayer+1;
+        heroSprite.sortingOrder = currentLayer;
+        //hero.stack.GetComponent<Canvas>().sortingOrder = currentLayer;
     }
 }

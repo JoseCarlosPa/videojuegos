@@ -20,6 +20,7 @@ public class CharAttributes : ScriptableObject
     public bool isFlying;
     public Sprite heroSprite;
     public Hero heroSO;
+    public bool isDeployed;
 
     [Header("Current Attributes")]
     float initiativeCurrent;
@@ -79,5 +80,14 @@ public class CharAttributes : ScriptableObject
         stackCurrent = stack;
         initiativeCurrent = initiative;
         velocityCurrent = velocity;
+    }
+    public void SetDefaultVelocityAndInitiative()
+    {
+        velocityCurrent = velocity;
+        initiativeCurrent = initiative;
+    }
+    public int Calculatelosses()//calculates the losses suffered by the units during the battle
+    {
+        return stack - stackCurrent;
     }
 }

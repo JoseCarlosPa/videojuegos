@@ -9,16 +9,21 @@ public abstract class Hero : MonoBehaviour
     StartBTN startBTN;
     public Stack stack;//variable caching for a child object
     Move moveCpmnt;
+    BattleController battleController;
+    internal Turn turn;
     private void Awake()
     {
         heroData.SetCurrentAttributes();//loads the current characteristics of the hero
         moveCpmnt = GetComponent<Move>();
+        battleController = FindObjectOfType<BattleController>();
+        turn = FindObjectOfType<Turn>();
     }
     private void Start()
     {
         StorageMNG.OnClickOnGrayIcon += DestroyMe; //subscribes the DestroyMe method to an OnRemoveHero event
         startBTN = FindObjectOfType<StartBTN>();
         stack = GetComponentInChildren<Stack>();//assigning a child object to a variable
+        Turn.OnNewRound += heroData.SetDefaultVelocityAndInitiative;
     }
     public abstract void DealsDamage(BattleHex target);
 
@@ -42,5 +47,19 @@ public abstract class Hero : MonoBehaviour
     {
         Vector3 targetPos = BattleController.currentTarget.transform.position;
         moveCpmnt.ControlDirection(targetPos);//rotates the hero towards the target
+    }
+    public void PlayersTurn(IInitialHexes getInitialHexes)
+    {
+        IAdjacentFinder adjFinder = GetTypeOfHero();//determines the type of movement
+        int stepsLimit = heroData.CurrentVelocity;//gets current velocity of the atacker
+
+        //determines possible positions for a player’s regiment
+        GetComponent<AvailablePos>().GetAvailablePositions(stepsLimit, adjFinder, getInitialHexes);
+        DefineTargets();//displays potencial targets
+    }
+    public void HeroIsKilled()
+    {
+        Turn.OnNewRound -= heroData.SetDefaultVelocityAndInitiative;
+        battleController.RemoveHeroWhenItIsKilled(this);
     }
 }

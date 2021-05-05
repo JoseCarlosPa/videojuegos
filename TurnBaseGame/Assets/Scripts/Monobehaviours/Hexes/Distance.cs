@@ -7,6 +7,8 @@ public class Distance : MonoBehaviour
 {
     public int distanceFromStartingPoint;//counts distance from starting hex
     public int stepsToGo;//determines the number of steps to go through the hex
+    public int defaultDistance;//Default value of the distanceFromStartingPoint variable
+    public int defaultstepsToGo;//Default value of the stepsToGo variable
     BattleHex hex;
     Text distanceText; //refers to the text component of the same object
 
@@ -22,21 +24,23 @@ public class Distance : MonoBehaviour
         distanceFromStartingPoint = initialHex.distanceText.distanceFromStartingPoint
                     + initialHex.distanceText.stepsToGo;
         //display new value of the distanceFromStartingPoint
-        DisplayDistanceText();
+        //DisplayDistanceText();
     }
     public void SetDistanceForFlyingUnit(BattleHex initialHex)
     {
+        stepsToGo = 1;
         //add a step to the previous step to get diastance from starting point
-        distanceFromStartingPoint = initialHex.distanceText.distanceFromStartingPoint + 1;
+        distanceFromStartingPoint = initialHex.distanceText.distanceFromStartingPoint + stepsToGo;
         //display new value of the distanceFromStartingPoint
-        DisplayDistanceText();
-    }
+        //DisplayDistanceText();
 
+    }
     private void DisplayDistanceText()
     {
         distanceText.text = distanceFromStartingPoint.ToString();
         distanceText.color = new Color32(255, 255, 255, 255);
     }
+
 
     public bool EvaluateDistance(BattleHex initialHex)//compares distances between two hexes
     {
@@ -60,4 +64,14 @@ public class Distance : MonoBehaviour
         return distanceFromStartingPoint > currentDistance &&
                 stepsLimit >= currentDistance;//to evaluate if the velocity is enough to reach this hex
     }
+    public bool EvaluateDistanceForGroundAI(BattleHex initialHex, int stepsLimit)
+    {
+        //distance to reach initial hex and get out of it
+        int currentDistance = initialHex.distanceText.distanceFromStartingPoint
+                              + initialHex.distanceText.stepsToGo;
+        //default value of distanceFromStartingPoint is 20 to set the shortest path
+        return distanceFromStartingPoint > currentDistance &&
+                stepsLimit >= currentDistance;//to evaluate if the velocity is enough to reach this hex
+    }
+
 }
