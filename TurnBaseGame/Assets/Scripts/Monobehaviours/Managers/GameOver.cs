@@ -5,46 +5,45 @@ using UnityEngine.UI;
 
 public class GameOver : MonoBehaviour
 {
-    public CurrentProgress currentProgress;//stores the Bar Object
+    public CurrentProgress currentProgress;// almacena el objeto de la barra
     public List<CharIcon> heroIcons;//stores all icon prefabs
-    List<CharAttributes> regimentsSO = new List<CharAttributes>();//stores all scriptable objects of heroes
-    ScrollRect scrollRect;//used as parent object for icons
+    List<CharAttributes> regimentsSO = new List<CharAttributes>();// almacena todos los objetos programables de héroes
+    ScrollRect scrollRect;// utilizado como objeto padre para los iconos
     [SerializeField] CharIcon iconPrefab; //icon prefab
 
-    // to change the text depending on the result of the battle
+    // para cambiar el texto dependiendo del resultado de la batalla
     [SerializeField] internal TMPro.TextMeshProUGUI VicOrDefeat;
 
     private void Start()
     {
         scrollRect = GetComponent<ScrollRect>();
-        CallHeroIcons();//instantiates all icons of heroes who participated in the battle
+        CallHeroIcons();// crea una instancia de todos los íconos de los héroes que participaron en la batalla
     }
 
-    //changes the text depending on the result of the battle
+    // cambia el texto dependiendo del resultado de la batalla
     public void DefeatOrVictory(bool victory)
     {
-        if (victory)//if the victory is won
+        if (victory)
         {
-            VicOrDefeat.text = "Victory";
+            VicOrDefeat.text = "Victoria";
         }
         else
         {
-            VicOrDefeat.text = "Defeat";
+            VicOrDefeat.text = "Derrota";
         }
     }
-
-    //instantiates all icons of heroes who participated in the battle
-    public void CallHeroIcons()//places heroes icons in storage
+    // crea una instancia de todos los íconos de los héroes que participaron en la batalla
+    public void CallHeroIcons()// coloca los iconos de los héroes en el almacenamiento
     {
-        regimentsSO = currentProgress.heroesOfPlayer;//access to player's regiments
-        Transform parentOfIcons = scrollRect.content.transform;//defines the parent object for all icons
+        regimentsSO = currentProgress.heroesOfPlayer;// acceso a los regimientos del jugador
+        Transform parentOfIcons = scrollRect.content.transform;// define el objeto padre para todos los iconos
         for (int i = 0; i < regimentsSO.Count; i++)
         {
             if (regimentsSO[i].isDeployed)
             {
-                CharIcon fighterIcon = Instantiate(iconPrefab, parentOfIcons);//instantiate and return an icon
-                fighterIcon.FillIconWhenGameIsOver(regimentsSO[i]);//fills the icon with
-                //data taken from scriptable object
+                CharIcon fighterIcon = Instantiate(iconPrefab, parentOfIcons);// crear una instancia y devolver un icono
+                fighterIcon.FillIconWhenGameIsOver(regimentsSO[i]);// llena el icono con
+                                                                   // datos tomados de un objeto programable
             }
         }
     }

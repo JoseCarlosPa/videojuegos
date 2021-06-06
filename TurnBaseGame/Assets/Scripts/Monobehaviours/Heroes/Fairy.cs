@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class Fairy : Hero
 {
-    [SerializeField] DamagingFlyingObject mageBall;//arrow's prefab
-    [SerializeField] internal Vector3 initialPosCorrection;//adjusts arrow position
-    IAttacking dealsDamage = new FreezingAttack();//simple attack behavior reference
+    [SerializeField] DamagingFlyingObject mageBall;// prefabricado de flechas
+    [SerializeField] internal Vector3 initialPosCorrection;// ajusta la posición de la flecha
+    IAttacking dealsDamage = new FreezingAttack();// referencia de comportamiento de ataque simple
 
 
     public override void DealsDamage(BattleHex target)
@@ -23,21 +23,21 @@ public class Fairy : Hero
         IDefineTarget wayToLookForTargets = new TargetPlayerRange();
         wayToLookForTargets.DefineTargets(this);
     }
-    public override void HeroIsAtacking()//starts the attack
+    public override void HeroIsAtacking()// inicia el ataque
     {
         base.HeroIsAtacking();
-        GetComponent<Animator>().SetTrigger("isAttacking");//activates animation
-        InstantiateBall();//instantiates an arrow
+        GetComponent<Animator>().SetTrigger("isAttacking");// activa la animación
+        InstantiateBall();// instancia una flecha
     }
-    private void InstantiateBall()//instantiates an arrow
+    private void InstantiateBall()// instancia una flecha
     {
-        //position where the arrow will appear
+        // posición donde aparecerá la flecha
         Vector3 positionForArrow = new Vector3(transform.position.x,
                                  transform.position.y + initialPosCorrection.y, transform.position.z);
         Hero currentTarget = BattleController.currentTarget.GetComponentInChildren<Hero>();
 
-        Quaternion rotation = CalcRotation.CalculateRotation(currentTarget); ;//determines the angle of rotation for the arrow
-        DamagingFlyingObject ball = Instantiate(mageBall, positionForArrow, rotation, transform);//instantiates an arrow object
+        Quaternion rotation = CalcRotation.CalculateRotation(currentTarget); ;// determina el ángulo de rotación de la flecha
+        DamagingFlyingObject ball = Instantiate(mageBall, positionForArrow, rotation, transform);// crea una instancia de un objeto flecha
         ball.FireArrow(dealsDamage);//fires the arrow
     }
 }

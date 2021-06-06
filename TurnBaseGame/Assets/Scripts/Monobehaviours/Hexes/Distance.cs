@@ -5,22 +5,22 @@ using UnityEngine.UI;
 
 public class Distance : MonoBehaviour
 {
-    public int distanceFromStartingPoint;//counts distance from starting hex
-    public int stepsToGo;//determines the number of steps to go through the hex
-    public int defaultDistance;//Default value of the distanceFromStartingPoint variable
-    public int defaultstepsToGo;//Default value of the stepsToGo variable
+    public int distanceFromStartingPoint;// cuenta la distancia desde el hex inicial
+    public int stepsToGo;// determina el número de pasos a través del hexadecimal
+    public int defaultDistance;// Valor predeterminado de la variable distanceFromStartingPoint
+    public int defaultstepsToGo;// Valor predeterminado de la variable stepsToGo
     BattleHex hex;
-    Text distanceText; //refers to the text component of the same object
+    Text distanceText; // se refiere al componente de texto del mismo objeto
 
     private void Start()
     {
         hex = GetComponentInParent<BattleHex>();
         distanceText = GetComponent<Text>();
     }
-    //sets distance from starting hex and displays it
+    // establece la distancia desde el hex inicial y la muestra
     public void SetDistanceForGroundUnit(BattleHex initialHex)
     {
-        //add a step to the previous step to get diastance from starting point
+        // agrega un paso al paso anterior para obtener la diastancia desde el punto de partida
         distanceFromStartingPoint = initialHex.distanceText.distanceFromStartingPoint
                     + initialHex.distanceText.stepsToGo;
         //display new value of the distanceFromStartingPoint
@@ -29,7 +29,7 @@ public class Distance : MonoBehaviour
     public void SetDistanceForFlyingUnit(BattleHex initialHex)
     {
         stepsToGo = 1;
-        //add a step to the previous step to get diastance from starting point
+        // agrega un paso al paso anterior para obtener la diastancia desde el punto de partida
         distanceFromStartingPoint = initialHex.distanceText.distanceFromStartingPoint + stepsToGo;
         //display new value of the distanceFromStartingPoint
         //DisplayDistanceText();
@@ -42,13 +42,13 @@ public class Distance : MonoBehaviour
     }
 
 
-    public bool EvaluateDistance(BattleHex initialHex)//compares distances between two hexes
+    public bool EvaluateDistance(BattleHex initialHex)// compara distancias entre dos hexes
     {
         return distanceFromStartingPoint + stepsToGo ==
                 initialHex.distanceText.distanceFromStartingPoint;
     }
-    public int MakeMePartOfOptimalPath()//includes this hex into optimal path list, 
-    //returns number of steps to go through the hex
+    public int MakeMePartOfOptimalPath()// incluye este hexadecimal en la lista de rutas óptimas,
+    // devuelve el número de pasos para pasar por el hex.
     {
         OptimalPath.optimalPath.Add(hex);
         hex.Landscape.color = new Color32(150, 150, 150, 255);
@@ -56,22 +56,22 @@ public class Distance : MonoBehaviour
     }
     public bool EvaluateDistanceForGround(BattleHex initialHex)
     {
-        //distance to reach initial hex and get out of it
+        // distancia para alcanzar el hex inicial y salir de él
         int currentDistance = initialHex.distanceText.distanceFromStartingPoint
                               + initialHex.distanceText.stepsToGo;
-        int stepsLimit = BattleController.currentAtacker.heroData.CurrentVelocity;//velocity of a hero
-        //default value of distanceFromStartingPoint is 20 to set the shortest path
+        int stepsLimit = BattleController.currentAtacker.heroData.CurrentVelocity;// velocidad de un héroe
+        // el valor predeterminado de distanceFromStartingPoint es 20 para establecer la ruta más corta
         return distanceFromStartingPoint > currentDistance &&
-                stepsLimit >= currentDistance;//to evaluate if the velocity is enough to reach this hex
+                stepsLimit >= currentDistance;// para evaluar si la velocidad es suficiente para alcanzar este hex
     }
     public bool EvaluateDistanceForGroundAI(BattleHex initialHex, int stepsLimit)
     {
-        //distance to reach initial hex and get out of it
+        // distancia para alcanzar el hex inicial y salir de él
         int currentDistance = initialHex.distanceText.distanceFromStartingPoint
                               + initialHex.distanceText.stepsToGo;
-        //default value of distanceFromStartingPoint is 20 to set the shortest path
+        // el valor predeterminado de distanceFromStartingPoint es 20 para establecer la ruta más corta
         return distanceFromStartingPoint > currentDistance &&
-                stepsLimit >= currentDistance;//to evaluate if the velocity is enough to reach this hex
+                stepsLimit >= currentDistance;// para evaluar si la velocidad es suficiente para alcanzar este
     }
 
 }

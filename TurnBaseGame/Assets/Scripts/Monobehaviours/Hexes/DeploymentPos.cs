@@ -5,20 +5,20 @@ using UnityEngine;
 public enum PositionForRegiment { none, player, enemy };
 public class DeploymentPos : MonoBehaviour
 {
-    public PositionForRegiment regimentPosition;//helps display potential position
+    public PositionForRegiment regimentPosition;// ayuda a mostrar la posición potencial
     BattleHex parentHex;
     void Start()
     {
-        parentHex = GetComponentInParent<BattleHex>();//finds the parent hex
+        parentHex = GetComponentInParent<BattleHex>();// encuentra el hexadecimal principal
         StartBTN.OnStartingBattle += DisableMe;
     }
 
-    public void OnMouseDown()//is executed when the user has pressed the mouse button while over the Collider.
-    {       
-        //checks if the player clicked on the hex and if it is a potencial position
+    public void OnMouseDown()// se ejecuta cuando el usuario ha presionado el botón del mouse mientras está sobre el Collider.
+    {
+        // comprueba si el jugador hizo clic en el hex y si es una posición potencial
         if (Deployer.readyForDeploymentIcon != null && regimentPosition ==PositionForRegiment.player)
         {
-            Deployer.DeployRegiment(parentHex);//deploys a regiment
+            Deployer.DeployRegiment(parentHex);// despliega un regimiento
         }
     }
     void DisableMe()

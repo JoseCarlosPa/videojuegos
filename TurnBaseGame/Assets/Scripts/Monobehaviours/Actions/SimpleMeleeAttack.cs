@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class SimpleMeleeAttack : MonoBehaviour, IAttacking
 {
-    DamageCounter damageController = new DamageCounter();//access to damage calculation
-    int targetStack;//final numbers after the attack
+    DamageCounter damageController = new DamageCounter();// acceso al cálculo de daños
+    int targetStack;// números finales después del ataque
     public void HeroIsDealingDamage(Hero atacker, Hero Target)
     {
-        //calculates the final number of units in the regiment of the attacked hero
+        // calcula el número final de unidades en el regimiento del héroe atacado
         targetStack = damageController.CountTargetStack(atacker, Target);
         int currentInt = Target.heroData.StackCurrent;
-        //assigns a new value to the number of units of the attacked hero
+        // asigna un nuevo valor al número de unidades del héroe atacado
         Target.heroData.StackCurrent = targetStack;
         Target.stack.StartCoroutine(Target.stack.CountDownToTargetStack(currentInt, targetStack));
     }

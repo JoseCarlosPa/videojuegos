@@ -4,6 +4,6 @@ using UnityEngine;
 
 public interface IAttacking 
 {
-    void HeroIsDealingDamage(Hero atacker, Hero Target);//helps to choose a method of dealing damage
+    void HeroIsDealingDamage(Hero atacker, Hero Target);// ayuda a elegir un método para infligir daño
 
 }

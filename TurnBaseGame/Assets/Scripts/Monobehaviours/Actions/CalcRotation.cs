@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class CalcRotation : MonoBehaviour
 {
-    static float direction;//to calculate the angle of rotation
-    static float ZCoordinate;//the angle of rotation
+    static float direction;// para calcular el ángulo de giro
+    static float ZCoordinate;// el ángulo de rotación
 
     public static Quaternion CalculateRotation(Hero targetToAtack)
     {
-        Vector3 targetPosition = targetToAtack.transform.position;//target coordinates
-        Hero currentAtacker = BattleController.currentAtacker;//to access the coordinates of the attacking hero
-        Vector3 atackerPosition = currentAtacker.transform.position;//coordinates of the attacking hero
-        ZCoordinate = GetAngle(targetPosition, atackerPosition);//Calculation of the rotation angle
-        Quaternion rotation = Quaternion.EulerAngles(0, 0, ZCoordinate);//to transform into a Quaternion
+        Vector3 targetPosition = targetToAtack.transform.position;// coordenadas de destino
+        Hero currentAtacker = BattleController.currentAtacker;// para acceder a las coordenadas del héroe atacante
+        Vector3 atackerPosition = currentAtacker.transform.position;// coordenadas del héroe atacante
+        ZCoordinate = GetAngle(targetPosition, atackerPosition);// Cálculo del ángulo de rotación
+        Quaternion rotation = Quaternion.EulerAngles(0, 0, ZCoordinate);// transformarse en un cuaternión
         return rotation;
     }
     private static float GetAngle(Vector3 targetPosition, Vector3 atackerPosition)
     {
-        //calculates the arc tangent of the rotation angle
+        // calcula el arco tangente del ángulo de rotación
         direction = Mathf.Atan((targetPosition.y - atackerPosition.y) /
                                (targetPosition.x - atackerPosition.x));
 
-        if (targetPosition.x > atackerPosition.x)//if the target is to the right of the hero
+        if (targetPosition.x > atackerPosition.x)// si el objetivo está a la derecha del héroe
         {
             ZCoordinate = direction;
         }

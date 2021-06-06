@@ -12,14 +12,14 @@ public class BattleHex : MonoBehaviour
     public bool isSecondLevel = false;
     public ClickOnMe clickOnMe;
     public Image Landscape;
-    public Distance distanceText;//access to DistanceText Object
-    public DeploymentPos deploymentPos;//access to DeploymentPos Object
+    public Distance distanceText;// acceso al objeto DistanceText
+    public DeploymentPos deploymentPos;// acceso al objeto DeploymentPos
     [SerializeField] protected Image currentState;
     public bool isStartingHex = false;
-    public bool isNeighboringHex = false;//helps define a hex as neighbouring to evaluated
-    public bool isIncluded = false;//helps define a hex as available position
-    public bool potencialTarget;//helps identify potential targets
-    public bool lookingForTarget;//helps identify potential targets 
+    public bool isNeighboringHex = false;// Ayuda a definir un hex como vecino a evaluado
+    public bool isIncluded = false;// ayuda a definir un hex como posición disponible
+    public bool potencialTarget;// ayuda a identificar posibles objetivos
+    public bool lookingForTarget;// ayuda a identificar posibles objetivos
 
     private void Awake()
     {
@@ -35,63 +35,63 @@ public class BattleHex : MonoBehaviour
     {
 
     }
-    public void MakeMeActive()//sets active state to this hex
+    public void MakeMeActive()// establece el estado activo en este hexagono
     {
         battleHexState = HexState.active;
     }
-    public void MakeMeInActive()//sets inactive state to this hex
+    public void MakeMeInActive()// establece el estado inactivo en este hexagono
     {
-        if (battleHexState != HexState.active)//excludes manually modified active hexes
+        if (battleHexState != HexState.active)// excluye los hexes activos modificados manualmente
         {
-            Landscape.color = new Color32(120, 120, 120, 250);//sets new color to an inactive hex
+            Landscape.color = new Color32(120, 120, 120, 250);// establece un nuevo color en un hexadecimal inactivo
         }
 
     }
     public virtual void MakeMeAvailable()
     {
-        currentState.sprite = clickOnMe.fieldManager.availableToMove;//sets the white frame to a hex
+        currentState.sprite = clickOnMe.fieldManager.availableToMove;// establece el marco blanco en hexagano
         currentState.color = new Color32(255, 255, 255, 255);
     }
-    public virtual void MakeMeTargetToMove()//defines a hex as selected position
+    public virtual void MakeMeTargetToMove()// define un hexadecimal como posición seleccionada
     {
         clickOnMe.isTargetToMove = true;
         BattleController.targetToMove = this;
-        currentState.sprite = clickOnMe.fieldManager.availableAsTarget;//sets the green frame to a hex
+        currentState.sprite = clickOnMe.fieldManager.availableAsTarget;// establece el marco verde en hexagano
     }
-    public void DefineMeAsStartingHex()//defines this hex as starting position
+    public void DefineMeAsStartingHex()// define este hex como posición inicial
     {
         distanceText.distanceFromStartingPoint = 0;
         isStartingHex = true;
-        distanceText.stepsToGo = 1;//to get out from deserts and swamps
+        distanceText.stepsToGo = 1;// para salir de desiertos y pantanos
     }
     public virtual bool AvailableToGround()
     {
         return true;
     }
-    public void MakeMeDeploymentPosition()//displays the hex as a potential position for the hero
+    public void MakeMeDeploymentPosition()// muestra el hex como una posición potencial para el héroe
     {
-        deploymentPos.GetComponent<PolygonCollider2D>().enabled = true;//enables collider (and clicking)
-        deploymentPos.GetComponent<Image>().color = new Color32(255, 255, 255, 255);//displays a checkmark
+        deploymentPos.GetComponent<PolygonCollider2D>().enabled = true;// habilita colisionador (y hacer clic)
+        deploymentPos.GetComponent<Image>().color = new Color32(255, 255, 255, 255);// muestra una marca de verificación
     }
-    public void CleanUpDeploymentPosition()//hides a checkmark, disables collider
+    public void CleanUpDeploymentPosition()// oculta una marca de verificación, deshabilita el colisionador
     {
-        deploymentPos.GetComponent<PolygonCollider2D>().enabled = false;// disables collider(and clicking)
-        deploymentPos.GetComponent<Image>().color = new Color32(255, 255, 255, 0);//hides a checkmark
+        deploymentPos.GetComponent<PolygonCollider2D>().enabled = false;// deshabilita el colisionador (y haciendo clic)
+        deploymentPos.GetComponent<Image>().color = new Color32(255, 255, 255, 0);// oculta una marca de verificación
     }
-    internal void DefineMeAsPotencialTarget()//defines hex as a potential target for attack
+    internal void DefineMeAsPotencialTarget()// define hexadecimal como un objetivo potencial para el ataque
     {
-        currentState.color = new Color(255, 0, 0, 255);//displays red frame 
+        currentState.color = new Color(255, 0, 0, 255);// muestra un marco rojo
         potencialTarget = true;
     }
-    public void SetDefaultValue()//returns the hex to the initial state
+    public void SetDefaultValue()// devuelve el hexadecimal al estado inicial
     {
         isStartingHex = false;
         isNeighboringHex = false;
         isIncluded = false;
         lookingForTarget = false;
-        distanceText.GetComponent<Text>().color = new Color32(255, 255, 255, 0);//hides numbers
-        currentState.color = new Color32(255, 255, 255, 0);//hides the frame
-        Landscape.color = new Color32(255, 255, 255, 255);//hides the optimal path
+        distanceText.GetComponent<Text>().color = new Color32(255, 255, 255, 0);//esconder numberos
+        currentState.color = new Color32(255, 255, 255, 0);//esconder el frame
+        Landscape.color = new Color32(255, 255, 255, 255);//esconder el camino mas optimo
         distanceText.distanceFromStartingPoint = distanceText.defaultDistance;
         distanceText.stepsToGo = distanceText.defaultstepsToGo;
         potencialTarget = false;

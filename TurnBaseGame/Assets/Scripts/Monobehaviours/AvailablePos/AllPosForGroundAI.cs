@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class AllPosForGroundAI : MonoBehaviour
 {
-    private int step;//counts iterations
-    List<BattleHex> initialHexes = new List<BattleHex>();//collects neighbouring hexes for evaluated hex
-    IEvaluateHex checkHex = new IfAILooksForAllTargets();//refer to interface to access the behavior we need 
+    private int step;// cuenta las iteraciones
+    List<BattleHex> initialHexes = new List<BattleHex>();// recopila los hexes vecinos para el hex evaluado
+    IEvaluateHex checkHex = new IfAILooksForAllTargets();// consulte la interfaz para acceder al comportamiento que necesitamos
 
-    //looks for all positions available
+    // busca todas las posiciones disponibles
     public void GetAvailablePositions(int stepsLimit, IInitialHexes getHexesToCheck, BattleHex startingHex)
     {
-        GetAdjacentHexesExtended(stepsLimit, startingHex);//looks for hexes adjacent to starting hex. Flying unit for now
-        //runs iterations to find all positions available. steps=number of iterations
+        GetAdjacentHexesExtended(stepsLimit, startingHex);// busca hexágonos adyacentes al hex inicial. Unidad voladora por ahora
+        // ejecuta iteraciones para encontrar todas las posiciones disponibles. pasos = número de iteraciones
         for (step = 2; step <= stepsLimit; step++)
         {
-            initialHexes = getHexesToCheck.GetNewInitialHexes();//collects hexes ready for a new iteration
+            initialHexes = getHexesToCheck.GetNewInitialHexes();// recopila hexágonos listos para una nueva iteración
             foreach (BattleHex hex in initialHexes)
             {
-                    GetAdjacentHexesExtended(stepsLimit, hex);// defines neighbouring hexes for each hex in the collection
+                    GetAdjacentHexesExtended(stepsLimit, hex);// define los hexes vecinos para cada hex de la colección
             }
         }
     }
@@ -27,11 +27,11 @@ public class AllPosForGroundAI : MonoBehaviour
         List<BattleHex> neighboursToCheck = NeighboursFinder.GetAdjacentHexes(initialHex, checkHex);
         foreach (BattleHex hex in neighboursToCheck)
         {
-            //Compares the current value of the distanceFromStarting point variable with a new value
+            // Compara el valor actual de la variable del punto distanceFromStarting con un nuevo valor
             if (hex.distanceText.EvaluateDistanceForGroundAI(initialHex, stepsLimit))
             {
                 hex.isNeighboringHex = true;
-                hex.distanceText.SetDistanceForGroundUnit(initialHex);//sets the distance from the starting hex
+                hex.distanceText.SetDistanceForGroundUnit(initialHex);// establece la distancia desde el hex de inicio
             }
         }
     }

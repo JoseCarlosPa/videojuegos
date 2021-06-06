@@ -7,9 +7,9 @@ public class IfAILooksForAllTargets : MonoBehaviour, IEvaluateHex
     public bool EvaluateHex(BattleHex evaluatedHex)
     {
         return evaluatedHex.battleHexState
-                    == HexState.active//Excludes inactive hexes
-                    && !evaluatedHex.isStartingHex//Excludes the starting position
-                    && evaluatedHex.AvailableToGround();//excludes water and mountains
+                    == HexState.active// Excluye maleficios inactivos
+                    && !evaluatedHex.isStartingHex// Excluye la posición inicial
+                    && evaluatedHex.AvailableToGround();// excluye agua y montañas
     }
 
 }

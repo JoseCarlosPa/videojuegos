@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PosForGroundAI : MonoBehaviour, IAdjacentFinder
 {
-    IEvaluateHex checkHex = new IfItIsNewGroundAI();//refer to interface to access the behavior we need 
+    IEvaluateHex checkHex = new IfItIsNewGroundAI();// consulte la interfaz para acceder al comportamiento que necesitamos
     public void GetAdjacentHexesExtended(BattleHex initialHex)
     {
         List<BattleHex> neighboursToCheck = NeighboursFinder.GetAdjacentHexes(initialHex, checkHex);
@@ -12,7 +12,7 @@ public class PosForGroundAI : MonoBehaviour, IAdjacentFinder
         {
             if (hex.distanceText.EvaluateDistanceForGround(initialHex))
             {
-                hex.isNeighboringHex = true;//defines the hex as adjacent to evaluted initial hex
+                hex.isNeighboringHex = true;// define el hexadecimal como adyacente al hexadecimal inicial evaluado
                 hex.distanceText.SetDistanceForGroundUnit(initialHex);
             }
         }

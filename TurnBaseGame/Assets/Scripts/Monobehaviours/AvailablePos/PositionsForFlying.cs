@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class PositionsForFlying : MonoBehaviour,IAdjacentFinder
 {
-    IEvaluateHex checkHex = new IfItIsNewFlying();//refer to interface to access the behavior we need 
-    //individualizes the search for positions for a flying regiments
+    IEvaluateHex checkHex = new IfItIsNewFlying();// consulte la interfaz para acceder al comportamiento que necesitamos
+    // individualiza la búsqueda de puestos para un regimiento de vuelo
     public void GetAdjacentHexesExtended(BattleHex initialHex)
     {
         List<BattleHex> neighboursToCheck = NeighboursFinder.GetAdjacentHexes(initialHex,checkHex);
         foreach (BattleHex hex in neighboursToCheck)
         {
-            hex.isNeighboringHex = true;//defines the hex as adjacent to evaluted initial hex
+            hex.isNeighboringHex = true;// define el hexadecimal como adyacente al hexadecimal inicial evaluado
             hex.distanceText.SetDistanceForFlyingUnit(initialHex);
             hex.MakeMeAvailable();
         }

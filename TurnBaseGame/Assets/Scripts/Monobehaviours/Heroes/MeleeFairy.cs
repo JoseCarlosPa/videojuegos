@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MeleeFairy : Hero
 {
-    IAttacking dealsDamage = new SimpleMeleeAttack();//simple attack behavior reference
+    IAttacking dealsDamage = new SimpleMeleeAttack();// referencia de comportamiento de ataque simple
     public override void DealsDamage(BattleHex target)
     {
         dealsDamage.HeroIsDealingDamage(this, BattleController.currentTarget);
@@ -19,7 +19,7 @@ public class MeleeFairy : Hero
         IDefineTarget wayToLookForTargets = new TargetPlayerMelee();
         wayToLookForTargets.DefineTargets(this);
     }
-    public override void HeroIsAtacking()//starts the attack
+    public override void HeroIsAtacking()// inicia el ataque
     {
         base.HeroIsAtacking();
         GetComponent<Animator>().SetTrigger("isAttacking");

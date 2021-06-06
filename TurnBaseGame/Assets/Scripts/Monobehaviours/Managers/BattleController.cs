@@ -8,19 +8,19 @@ public class BattleController : MonoBehaviour
 {
     public static BattleHex targetToMove;
     public static Hero currentAtacker;
-    public static Hero currentTarget;//Stores information about who is being attacked
-    List<Hero> allFighters = new List<Hero>(); //collects all fighters placed on the battlefield
-    public int stepsToCheckWholeField;//number of iterations to check the entire battlefield
-    public List<BattleHex> potentialTargets = new List<BattleHex>();//collects all player's regiments
+    public static Hero currentTarget;// Almacena información sobre quién está siendo atacado
+    List<Hero> allFighters = new List<Hero>();// Recoge todos los luchadores colocados en el campo de batalla
+    public int stepsToCheckWholeField;// número de iteraciones para comprobar todo el campo de batalla
+    public List<BattleHex> potentialTargets = new List<BattleHex>();// recoge los regimientos de todos los jugadores
     Turn turn;
-    public EventSystem events;//to disable click response
+    public EventSystem events;// para deshabilitar la respuesta al clic
     private void Start()
     {
         turn = GetComponent<Turn>();
         events = FindObjectOfType<EventSystem>();
     }
 
-    //collects all fighters placed on the battlefield
+    // Recoge todos los luchadores colocados en el campo de batalla
     public List<Hero> DefineAllFighters()
     {
         allFighters = FindObjectsOfType<Hero>().ToList();
@@ -28,10 +28,10 @@ public class BattleController : MonoBehaviour
     }
     public void DefineNewAtacker()
     {
-        //   sorts fighters by initiative value, in descending order
+        // clasifica a los luchadores por valor de iniciativa, en orden descendente
         List<Hero> allFighters = DefineAllFighters().
                                  OrderByDescending(hero => hero.heroData.InitiativeCurrent).ToList();
-        //  the first element of the list has the biggest initiative value
+        // el primer elemento de la lista tiene el mayor valor de iniciativa
         currentAtacker = allFighters[0];
         currentAtacker.heroData.InitiativeCurrent = 0;
     }
@@ -48,12 +48,12 @@ public class BattleController : MonoBehaviour
         Destroy(hero.gameObject);
         turn.TurnIsCompleted();
     }
-   public List<BattleHex> IsLookingForPotentialTargets()//collects all player's regiments into a list
+   public List<BattleHex> IsLookingForPotentialTargets()// reúne todos los regimientos de los jugadores en una lista
     {
         potentialTargets.Clear();
         foreach (BattleHex hex in FieldManager.activeHexList)
         {
-            //checks if the hex is marked as occupied by a player’s regiment
+            // comprueba si el hex está marcado como ocupado por el regimiento de un jugador
             if (hex.potencialTarget)
             {
                 potentialTargets.Add(hex);

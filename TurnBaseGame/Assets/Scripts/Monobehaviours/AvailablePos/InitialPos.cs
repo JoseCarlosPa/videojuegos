@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class InitialPos : IInitialHexes
 {
-    List<BattleHex> initialHexes = new List<BattleHex>();//collects neighbouring hexes for evaluated hex
+    List<BattleHex> initialHexes = new List<BattleHex>();// recopila los hexes vecinos para el hex evaluado
     public List<BattleHex> GetNewInitialHexes()
     {
-        initialHexes.Clear();// empty the array before filling it again
+        initialHexes.Clear();// vacía la matriz antes de volver a llenarla
         foreach (BattleHex hex in FieldManager.activeHexList)
         {
-            if (hex.isNeighboringHex & !hex.isIncluded)//eliminates unnecessary hexes
+            if (hex.isNeighboringHex & !hex.isIncluded)// elimina maleficios innecesarios
             {
                 initialHexes.Add(hex);
             }

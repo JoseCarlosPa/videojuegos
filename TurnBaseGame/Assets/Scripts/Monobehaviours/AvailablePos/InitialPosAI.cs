@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class InitialPosAI : MonoBehaviour, IInitialHexes
 {
-    List<BattleHex> initialHexes = new List<BattleHex>();//collects neighbouring hexes for evaluated hex
+    List<BattleHex> initialHexes = new List<BattleHex>();// recopila los hexes vecinos para el hex evaluado
     public List<BattleHex> GetNewInitialHexes()
     {
-        initialHexes.Clear();// empty the array before filling it again
+        initialHexes.Clear();// vacía la matriz antes de volver a llenarla
         foreach (BattleHex hex in FieldManager.activeHexList)
         {
             if (hex.isNeighboringHex & !hex.isIncluded
-                && ifThereIsPlayersRegiment(hex))//eliminates unnecessary hexes
+                && ifThereIsPlayersRegiment(hex))// elimina maleficios innecesarios
             {
                 initialHexes.Add(hex);
             }
@@ -19,11 +19,11 @@ public class InitialPosAI : MonoBehaviour, IInitialHexes
         return initialHexes;
     }
 
-    //checks if the initial hex is occupied by a player’s squad
+    // comprueba si el hexágono inicial está ocupado por la escuadra de un jugador
     private bool ifThereIsPlayersRegiment(BattleHex evaluatedHex)
     {
         bool AIPosfalse = true;
-        //if the object of type Hero does not contain a class of Enemy type
+        // si el objeto de tipo Hero no contiene una clase de tipo Enemy
         if (evaluatedHex.GetComponentInChildren<Hero>() != null &&
             evaluatedHex.GetComponentInChildren<Enemy>() == null)
         {

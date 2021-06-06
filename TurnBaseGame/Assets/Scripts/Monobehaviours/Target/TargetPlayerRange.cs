@@ -4,44 +4,48 @@ using UnityEngine;
 
 public class TargetPlayerRange : MonoBehaviour, IDefineTarget
 {
-    BattleHex initialHex;//Hex whose neighbors we are looking for
-    List<BattleHex> neighboursToCheck;//collects neighbouring hexes that match the search criteria
-    IEvaluateHex checkHex = new IfItIsTarget();//refers to the interface to access the behavior we need 
+    BattleHex initialHex;// Hexagonos cuyos vecinos estamos buscando
+    List<BattleHex> neighboursToCheck;// recopila los hexágonos vecinos que coinciden con los criterios de búsqueda
+    IEvaluateHex checkHex = new IfItIsTarget();// se refiere a la interfaz para acceder al comportamiento que necesitamos
     IInitialHexes getInitialHexes = new InitialTarget();
     Turn turn;
     public void DefineTargets(Hero currentAtacker)
     {
-        if (TargetsNearby(currentAtacker) == false)//check if there is an enemy nearby
+        // comprueba si hay un enemigo cerca
+        if (TargetsNearby(currentAtacker) == false)
         {
             TargetsAtAttackDistance(currentAtacker);
         }
     }
-    //if the enemy is nearby, then mark it and stop looking for distant eneimes
+
+    // si el enemigo está cerca, márcalo y deja de buscar enemigos distantes
     bool TargetsNearby(Hero currentAtacker)
     {
-        bool targetNearby = false;//the variable lets you know if there is an enemy nearby
-        initialHex = currentAtacker.GetComponentInParent<BattleHex>();//starting hex
+        bool targetNearby = false;// la variable te permite saber si hay un enemigo cerca
+        initialHex = currentAtacker.GetComponentInParent<BattleHex>();// hexagonos inicial
 
-        //collect neighboring hexes
+        // recolecta hexágonos vecinos
         neighboursToCheck = NeighboursFinder.GetAdjacentHexes(initialHex, checkHex);
-        if (neighboursToCheck.Count > 0)//check if the list is not empty
+        if (neighboursToCheck.Count > 0)// comprobar si la lista no está vacía
         {
             foreach (BattleHex hex in neighboursToCheck)
             {
-                hex.DefineMeAsPotencialTarget();//mark potential target
+                hex.DefineMeAsPotencialTarget();// marcar el objetivo potencial
                 //hex.lookingForTarget = true;
             }
             targetNearby = true;
         }
         return targetNearby;
     }
-    //if there are no enemies nearby, then continue searching
+
+    // si no hay enemigos cerca, continúa buscando
     void TargetsAtAttackDistance(Hero currentAtacker)
     {
-        int stepsLimit = currentAtacker.heroData.Atackdistanse;//number of search levels
-        BattleHex inititalHex = currentAtacker.GetComponentInParent<BattleHex>();//starting hex
-        IAdjacentFinder adjFinder = new MarkTargets();//rule for checking the hex
-        //check the entire attack area
+        int stepsLimit = currentAtacker.heroData.Atackdistanse;// número de niveles de búsqueda
+        BattleHex inititalHex = currentAtacker.GetComponentInParent<BattleHex>();// hexadecimal inicial
+        IAdjacentFinder adjFinder = new MarkTargets();// regla para verificar el hexadecimal
+        
+        // verifica toda el área de ataque
         currentAtacker.GetComponent<AvailablePos>().GetAvailablePositions(stepsLimit, adjFinder, getInitialHexes);
         CheckIfItIsNewTurn();
     }

@@ -6,8 +6,8 @@ public class IfItIsTarget : MonoBehaviour, IEvaluateHex
 {
     public bool EvaluateHex(BattleHex evaluatedHex)
     {
-        //check whether the hero is on the hex or not and
-        //whether this object contains the Enemy component
+        // comprobar si el héroe está en el hexagono o no y
+        // si este objeto contiene el componente Enemy
         if (BattleController.currentAtacker.GetComponent<Enemy>() == null)
         {
             return evaluatedHex.GetComponentInChildren<Enemy>() != null;

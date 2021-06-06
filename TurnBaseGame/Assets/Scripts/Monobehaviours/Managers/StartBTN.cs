@@ -5,47 +5,47 @@ using UnityEngine.UI;
 
 public class StartBTN : MonoBehaviour
 {
-    //makes other objects respond to the click on Start button
+    // hace que otros objetos respondan al hacer clic en el botón Inicio
     public delegate void StartsBattle();
     public static event StartsBattle OnStartingBattle;
-    [SerializeField] Button startBTN;    //stores the Start Button Object
+    [SerializeField] Button startBTN;    // almacena el objeto del botón de inicio
     StorageMNG storage;
-    [SerializeField] int minimumHeroesNum;//minimum set of regiments to activate the battle
+    [SerializeField] int minimumHeroesNum;// conjunto mínimo de regimientos para activar la batalla
 
     private void Start()
     {
         storage = GetComponent<StorageMNG>();
         OnStartingBattle += ControlStartBTN;
-        startBTN.gameObject.SetActive(false);//disables the Start button before the deployment 
+        startBTN.gameObject.SetActive(false);// deshabilita el botón Inicio antes de la implementación
     }
 
-    public void StartBattle()//the method is executed when the start button is pressed
+    public void StartBattle()// el método se ejecuta cuando se presiona el botón de inicio
     {
-        OnStartingBattle();//calls delegate
+        OnStartingBattle();// llama al delegado
     }
 
-    public void ControlStartBTN()//enables and disables the start button
+    public void ControlStartBTN()// habilita y deshabilita el botón de inicio
     {
-        int deployedReg = GetGrayIcons();//the number of regiments deployed
+        int deployedReg = GetGrayIcons();// el número de regimientos desplegados
 
-        //compares the number of units on the battlefield with the minimum number required
+                                         // compara el número de unidades en el campo de batalla con el número mínimo requerido
         if (deployedReg >= minimumHeroesNum)
         {
-            startBTN.gameObject.SetActive(true);// enables  the start button
+            startBTN.gameObject.SetActive(true);// habilita el botón de inicio
         }
         else
         {
-            startBTN.gameObject.SetActive(false);// disables the start button
+            startBTN.gameObject.SetActive(false);// deshabilita el botón de inicio
         }
     }
-    int GetGrayIcons()//counts the number of regiments deployed on the battlefield
+    int GetGrayIcons()// cuenta el número de regimientos desplegados en el campo de batalla
     {
-        int grayIcons = 0;//start with zero in case of multiple use of the method
-        foreach (CharIcon icon in storage.charIcons)//all icons are stored in storage class
+        int grayIcons = 0;// empezar con cero en caso de uso múltiple del método
+        foreach (CharIcon icon in storage.charIcons)// todos los iconos se almacenan en la clase de almacenamiento
         {
             if (icon.charAttributes.isDeployed)
             {
-                grayIcons++;//adds one to the number if the regiment is deployed
+                grayIcons++;// agrega uno al número si el regimiento está desplegado
             }
         }
         return grayIcons;

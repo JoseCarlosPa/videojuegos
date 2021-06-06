@@ -4,48 +4,48 @@ using UnityEngine;
 
 public class DamageCounter : MonoBehaviour
 {
-    int totalDamage;//damage done by the entire attacking regiment
-    int targetTotalHP; //the health of the entire attacked unit
-    int targetStack;//number of units in the attacked regiment after the attack
+    int totalDamage;// daño causado por todo el regimiento atacante
+    int targetTotalHP; // la salud de toda la unidad atacada
+    int targetStack;// número de unidades en el regimiento atacado después del ataque
     public int TargetStack
     {
         get { return targetStack; }
-        set//excludes negative variable value
+        set// excluye el valor de la variable negativa
         {
             if (value > 0) { targetStack = value; }
             else { targetStack = 0; }
         }
     }
-    int damagebyUnit;//damage done by one unit
-    int DamageByUnit//damage done by one unit
+    int damagebyUnit;// daño causado por una unidad
+    int DamageByUnit// daño causado por una unidad
     {
         get { return damagebyUnit; }
-        set//excludes negative variable value
+        set// excluye el valor de la variable negativa
         {
             if (value > 0) { damagebyUnit = value; }
-            else { damagebyUnit = 1; }//sets the value to one if resistance is greater than attack
+            else { damagebyUnit = 1; }// establece el valor en uno si la resistencia es mayor que el ataque
         }
     }
 
-    //calculates the number of units in an attacked regiment after the attack
+    // calcula el número de unidades en un regimiento atacado después del ataque
     internal int CountTargetStack(Hero currentAtacker, Hero target)
     {
-        totalDamage = CountDamageDealt(currentAtacker, target); //assigns the damage dealt to the variable
+        totalDamage = CountDamageDealt(currentAtacker, target);// asigna el daño infligido a la variable
 
-        //calculates the health of the entire regiment after the attack
+        // calcula la salud de todo el regimiento después del ataque
         targetTotalHP = target.heroData.HPCurrent * target.heroData.StackCurrent - totalDamage;
 
-        //calculates the number of units in an attacked regiment after the attack
+        // calcula el número de unidades en un regimiento atacado después del ataque
         TargetStack = targetTotalHP / target.heroData.HPCurrent;
         return targetStack;
     }
 
-    //calculates the damage done by the entire attacking regiment
+    // calcula el daño causado por todo el regimiento atacante
     private int CountDamageDealt(Hero currentAtacker, Hero target)
     {
-        //calculates the damage done by one unit
+        // calcula el daño causado por una unidad
         DamageByUnit = currentAtacker.heroData.AtackCurrent - target.heroData.ResistanceCurrent;
-        //calculates the damage done by the entire regiment
+        // calcula el daño hecho por todo el regimiento
         int DamageByRegiment = DamageByUnit * currentAtacker.heroData.StackCurrent;
         return DamageByRegiment;
     }

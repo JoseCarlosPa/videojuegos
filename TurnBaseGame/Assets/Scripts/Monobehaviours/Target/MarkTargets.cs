@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class MarkTargets : IAdjacentFinder
 {
-    IEvaluateHex checkHex = new IfItIsTargetRange();// to access the behavior we need 
+    IEvaluateHex checkHex = new IfItIsTargetRange();// para acceder al comportamiento que necesitamos
     public void GetAdjacentHexesExtended(BattleHex initialHex)
     {
-        //collect hexes that meet the criteria defined by the IfItIsTargetRange rule
+        // recolecta hexes que cumplen con los criterios definidos por la regla IfItIsTargetRange
         List<BattleHex> neighboursToCheck = NeighboursFinder.GetAdjacentHexes(initialHex, checkHex);
 
         foreach (BattleHex hex in neighboursToCheck)
         {
-            hex.lookingForTarget = true;//defines the hex as adjacent to evaluted  hex
+            hex.lookingForTarget = true;// define el hexadecimal como adyacente al hexadecimal evaluado
             if (hex.GetComponentInChildren<Enemy>() != null)
             {
-                hex.DefineMeAsPotencialTarget();//marks hex as a potential target
+                hex.DefineMeAsPotencialTarget();// marca hexadecimal como un objetivo potencial
             }
         }
     }

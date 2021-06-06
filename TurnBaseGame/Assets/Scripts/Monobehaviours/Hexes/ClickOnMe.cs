@@ -6,7 +6,7 @@ using UnityEngine.EventSystems;
 public class ClickOnMe : MonoBehaviour, IPointerClickHandler
 {
     BattleHex hex;
-    public bool isTargetToMove = false;//becomes true when the hex is clicked
+    public bool isTargetToMove = false;// se vuelve cierto cuando se hace clic en el hex
     public FieldManager fieldManager;
     BattleController battleController;
 
@@ -21,7 +21,7 @@ public class ClickOnMe : MonoBehaviour, IPointerClickHandler
     {
         if (hex.potencialTarget)
         {
-            battleController.events.gameObject.SetActive(false);//disables click response
+            battleController.events.gameObject.SetActive(false);// inhabilita la respuesta al clic
             BattleController.currentTarget = this.GetComponentInChildren<Hero>();
             BattleController.currentAtacker.HeroIsAtacking();
             return;
@@ -44,14 +44,14 @@ public class ClickOnMe : MonoBehaviour, IPointerClickHandler
         }
     }
 
-    public void ClearPreviousSelectionOfTargetHex()//Cancels previous selection
+    public void ClearPreviousSelectionOfTargetHex()// Cancela la selección anterior
     {
-        foreach (BattleHex hex in FieldManager.activeHexList)//looks for selected hex in active hexes list
+        foreach (BattleHex hex in FieldManager.activeHexList)// busca el hex seleccionado en la lista de hexes activos
         {
-            if (hex.clickOnMe.isTargetToMove == true)//evaluates hex if it is target
+            if (hex.clickOnMe.isTargetToMove == true)// evalúa hexadecimal si es objetivo
             {
-                hex.GetComponent<ClickOnMe>().isTargetToMove = false;//overrides boolean
-                hex.MakeMeAvailable();// sets white frame
+                hex.GetComponent<ClickOnMe>().isTargetToMove = false;// anula el booleano
+                hex.MakeMeAvailable();// establece marco blanco
             }
             hex.Landscape.color = new Color32(250, 250, 250, 250);
         }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Troll : Hero
 {
-    IAttacking dealsDamage = new SimpleMeleeAttack();//simple attack behavior reference
+    IAttacking dealsDamage = new SimpleMeleeAttack();// referencia de comportamiento de ataque simple
     public override void DealsDamage(BattleHex target)
     {
         dealsDamage.HeroIsDealingDamage(this, BattleController.currentTarget);
@@ -16,21 +16,21 @@ public class Troll : Hero
     }
     public override void DefineTargets()
     {
-        BattleHex initialHex = GetComponentInParent<BattleHex>();//hex occupied by the troll
-        IEvaluateHex checkHex = new IfItIsTarget();//neighboring hexes validation rule
+        BattleHex initialHex = GetComponentInParent<BattleHex>();// hex ocupado por el troll
+        IEvaluateHex checkHex = new IfItIsTarget();// regla de validación de hexes vecinos
 
-        //collect potencial targets
+        // recopilar objetivos potenciales
         List<BattleHex> neighboursToCheck = NeighboursFinder.GetAdjacentHexes(initialHex, checkHex);
-        if (neighboursToCheck.Count > 0)//if there is a target on the adjacent hex
+        if (neighboursToCheck.Count > 0)// si hay un objetivo en el hex adyacente
         {
-            HeroIsAtacking();//attacks the target
+            HeroIsAtacking();// ataca al objetivo
         }
-        else { turn.TurnIsCompleted(); }//turn is completed
+        else { turn.TurnIsCompleted(); }// se completa el turno
     }
-    public override void HeroIsAtacking()//starts the attack
+    public override void HeroIsAtacking()// inicia el ataque
     {
-        base.HeroIsAtacking();//Executes code specified in the parent class method
-        //launches the isAttacking animation clip
+        base.HeroIsAtacking();// Ejecuta el código especificado en el método de la clase principal
+        // lanza el clip de animación isAttacking
         GetComponent<Animator>().SetTrigger("isAttacking");
     }
 

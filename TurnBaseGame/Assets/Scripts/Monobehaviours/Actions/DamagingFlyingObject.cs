@@ -4,41 +4,41 @@ using UnityEngine;
 
 public class DamagingFlyingObject : MonoBehaviour
 {
-    internal Vector3 targetPosition;//The place where the enemy is
-    [SerializeField] Vector3 targetPosAdj;//adjusting the point where the arrow hits the enemy
-    internal bool ArrowFlies = false;//activates or deactivates the movement
-    [SerializeField] float velocity;//flying velocity
-    IAttacking dealsDamage = new SimpleMeleeAttack();//simple attack behavior reference
+    internal Vector3 targetPosition;// El lugar donde está el enemigo
+    [SerializeField] Vector3 targetPosAdj;// ajustando el punto donde la flecha golpea al enemigo
+    internal bool ArrowFlies = false;// activa o desactiva el movimiento
+    [SerializeField] float velocity;// velocidad de vuelo
+    IAttacking dealsDamage = new SimpleMeleeAttack();// referencia de comportamiento de ataque simple
 
     void Update()
     {
-        if (ArrowFlies) //activates or deactivates the movement
+        if (ArrowFlies) // activa o desactiva el movimiento
         {
             transform.position = Vector2.MoveTowards(transform.position,
-                targetPosition, velocity * Time.deltaTime);//moves an object towards the target
-             
-            //stops movement if the object is very close to the target
+                targetPosition, velocity * Time.deltaTime);// mueve un objeto hacia el objetivo
+
+            // detiene el movimiento si el objeto está muy cerca del objetivo
             if (Vector2.Distance(transform.position, targetPosition) < 0.1f)
             {
-                ArrowFlies = false;//stops the movement
+                ArrowFlies = false;//para
 
-                //deals damage to the target
+                //asegura el daño recibido
                 Hero currentTarget = BattleController.currentTarget;
                 dealsDamage.HeroIsDealingDamage(BattleController.currentAtacker, currentTarget);
                 currentTarget.GetComponent<Animator>().SetTrigger("IsTakingDamage");
-                DestroyMe();//destroys an arrow after dealing damage to the target
+                DestroyMe();// destruye una flecha después de infligir daño al objetivo
             }
         }
     }
-    public void FireArrow(IAttacking attackMethod)//starts moving the arrow towards the target
+    public void FireArrow(IAttacking attackMethod)// comienza a mover la flecha hacia el objetivo
     {
         Vector3 currentTargetPos = BattleController.currentTarget.transform.position;
-        targetPosition = currentTargetPos + targetPosAdj;//clarifies target coordinates
+        targetPosition = currentTargetPos + targetPosAdj;// aclara las coordenadas del objetivo
         dealsDamage = attackMethod;
-        ArrowFlies = true;//starts moving the arrow
+        ArrowFlies = true;// comienza a mover la flecha
     }
     private void DestroyMe()
     {
-        Destroy(gameObject);//destroys this arrow
+        Destroy(gameObject);// destruye esta flecha
     }
 }

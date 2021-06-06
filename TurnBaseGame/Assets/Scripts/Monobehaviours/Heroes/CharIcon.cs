@@ -5,16 +5,16 @@ using UnityEngine.UI;
 
 public class CharIcon : MonoBehaviour
 {
-    [SerializeField] internal Image heroImage;//stores a child object with a hero's sprite
-    [SerializeField] internal Image backGround;//stores a child object with a background sprite
-    [SerializeField] internal TMPro.TextMeshProUGUI stackText;//stores a child object with a number of stack
-    [SerializeField] internal CharAttributes charAttributes;//access to hero data
+    [SerializeField] internal Image heroImage;// almacena un objeto hijo con un sprite de héroe
+    [SerializeField] internal Image backGround;// almacena un objeto hijo con un sprite de fondo
+    [SerializeField] internal TMPro.TextMeshProUGUI stackText;// almacena un objeto hijo con un número de pila
+    [SerializeField] internal CharAttributes charAttributes;// acceso a los datos del héroe
     StorageMNG storage;
     string losses = "0";
     private void Start()
     {
         storage = GetComponentInParent<StorageMNG>();
-        StorageMNG.OnClickOnGrayIcon += ReturnDefaultState; //subscribes the ReturnDefaultState method to an OnRemoveHero event
+        StorageMNG.OnClickOnGrayIcon += ReturnDefaultState; // suscribe el método ReturnDefaultState a un evento OnRemoveHero
     }
     internal void FillIcon()
     {
@@ -22,12 +22,12 @@ public class CharIcon : MonoBehaviour
         stackText.text = charAttributes.stack.ToString();
         charAttributes.isDeployed = false;
     }
-    //changes the sprite and displays losses
+    // cambia el sprite y muestra pérdidas
     internal void FillIconWhenGameIsOver(CharAttributes Attributes)
     {
-        //displays the sprite of the hero who participated in the battle
+        // muestra el sprite del héroe que participó en la batalla
         heroImage.sprite = Attributes.heroSprite;
-        //displays losses
+        // muestra pérdidas
         if (Attributes.Calculatelosses() != 0)
         {
             losses = "- " + Attributes.Calculatelosses();
@@ -35,12 +35,12 @@ public class CharIcon : MonoBehaviour
 
         stackText.text = losses;
     }
-    public void IconClicked()//responds to a click on a button
+    public void IconClicked()// responde a un clic en un botón
     {
         StorageMNG storage = GetComponentInParent<StorageMNG>();
-        if (!charAttributes.isDeployed)//evaluates if the unit is already on the battlefield
+        if (!charAttributes.isDeployed)// evalúa si la unidad ya está en el campo de batalla
         {
-            storage.TintIcon(this);//marks a regiment to be placed on the battlefield
+            storage.TintIcon(this);// marca un regimiento para colocarlo en el campo de batalla
         }
         else
         {
@@ -54,12 +54,12 @@ public class CharIcon : MonoBehaviour
         charAttributes.isDeployed = true;
         
     }
-    public void ReturnDefaultState(CharAttributes selectedCharAttributes)//sets light green background to the icon
+    public void ReturnDefaultState(CharAttributes selectedCharAttributes)// establece un fondo verde claro para el icono
     {
-        if (selectedCharAttributes == charAttributes)//determines if the icon should respond to an event
+        if (selectedCharAttributes == charAttributes)// determina si el icono debe responder a un evento
         {
-            backGround.sprite = GetComponentInParent<StorageMNG>().defaultIcon; //sets light green icon
-            charAttributes.isDeployed = false;//defines the hero as available for deployment
+            backGround.sprite = GetComponentInParent<StorageMNG>().defaultIcon;// establece el icono verde claro
+            charAttributes.isDeployed = false;// define al héroe como disponible para su despliegue
         }
     }
 }

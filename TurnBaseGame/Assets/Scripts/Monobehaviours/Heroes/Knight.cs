@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Knight : Hero
 {
-    IAttacking dealsDamage = new SimpleMeleeAttack();//simple attack behavior reference
+    IAttacking dealsDamage = new SimpleMeleeAttack();// referencia de comportamiento de ataque simple
     public override void DealsDamage(BattleHex target)
     {
-        //    //launches damage methods
+        // // lanza métodos de daño
         dealsDamage.HeroIsDealingDamage(this, BattleController.currentTarget);
     }
 public override IAdjacentFinder GetTypeOfHero()
@@ -20,7 +20,7 @@ public override IAdjacentFinder GetTypeOfHero()
         IDefineTarget wayToLookForTargets = new TargetPlayerMelee();
         wayToLookForTargets.DefineTargets(this);
     }
-    public override void HeroIsAtacking()//starts the attack
+    public override void HeroIsAtacking()// inicia el ataque
     {
         base.HeroIsAtacking();
         GetComponent<Animator>().SetTrigger("isAttacking");

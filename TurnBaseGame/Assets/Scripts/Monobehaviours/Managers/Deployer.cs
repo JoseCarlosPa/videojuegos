@@ -6,49 +6,49 @@ using UnityEngine.UI;
 
 public class Deployer : MonoBehaviour
 {
-    public static CharIcon readyForDeploymentIcon;//stores information about the icon that the player clicked on
-    List<BattleHex> enemiesPositions = new List<BattleHex>();//stores hexes to deploy enemies
-    List<CharAttributes> enemiesToDeploy = new List<CharAttributes>();// stores enemies' scriptable objects
+    public static CharIcon readyForDeploymentIcon;// almacena información sobre el icono en el que el jugador hizo clic
+    List<BattleHex> enemiesPositions = new List<BattleHex>();// almacena hexágonos para desplegar enemigos
+    List<CharAttributes> enemiesToDeploy = new List<CharAttributes>();// almacena los objetos programables de los enemigos
     static StorageMNG storage;
-    int enemiesNum;// to count the number of enemy objects 
+    int enemiesNum;// para contar el número de objetos enemigos
 
     void Start()
     {
         ActivatePositionsForRegiments();
         storage = FindObjectOfType<StorageMNG>();
-        enemiesToDeploy = storage.currentProgress.enemies;//fill the list with enemies' scriptable objects
-        enemiesNum = enemiesToDeploy.Count();//count the number of enemy units
-        PlaceEnemies();//places enemy units on the battlefield
+        enemiesToDeploy = storage.currentProgress.enemies;// llena la lista con los objetos programables de los enemigos
+        enemiesNum = enemiesToDeploy.Count();// cuenta el número de unidades enemigas
+        PlaceEnemies();// coloca unidades enemigas en el campo de batalla
     }
-    //DeployRegiment method instantiates the hero on the battlefield
-    public static void DeployRegiment(BattleHex parentObject)//hero appears on parentObject
+    // El método DeployRegiment crea una instancia del héroe en el campo de batalla
+    public static void DeployRegiment(BattleHex parentObject)// el héroe aparece en parentObject
     {
-        Hero regiment = readyForDeploymentIcon.charAttributes.heroSO;// gets the hero prefab
-        Hero fighter = Instantiate(regiment, parentObject.Landscape.transform);//instantiates the hero and
+        Hero regiment = readyForDeploymentIcon.charAttributes.heroSO;// obtiene el héroe prefabricado
+        Hero fighter = Instantiate(regiment, parentObject.Landscape.transform);// crea una instancia del héroe y
         fighter.GetComponent<Move>().ManageSortingLayer(parentObject);
-        //returns a hero object
-        parentObject.CleanUpDeploymentPosition();//hides the checkmark and disables the collider
-        readyForDeploymentIcon.HeroIsDeployed();//marks the icon in gray
-        readyForDeploymentIcon = null;//clears a variable to prevent the hero from reappearing
-        storage.GetComponent<StartBTN>().ControlStartBTN();//enables the start button
+        
+        parentObject.CleanUpDeploymentPosition();// oculta la marca de verificación y deshabilita el colisionador
+        readyForDeploymentIcon.HeroIsDeployed();// marca el icono en gris
+        readyForDeploymentIcon = null;// borra una variable para evitar que el héroe reaparezca
+        storage.GetComponent<StartBTN>().ControlStartBTN();// habilita el botón de inicio
     }
-    void ActivatePositionsForRegiments() // displays the checkmark and enables the collider
+    void ActivatePositionsForRegiments()// muestra la marca de verificación y habilita el colisionador
     {
         foreach (BattleHex hex in FieldManager.allHexesArray)
         {
-            if (hex.deploymentPos.regimentPosition == PositionForRegiment.player)//if the variable of a hex is true then
-                                                      //a hex is defined as a possible position
+            if (hex.deploymentPos.regimentPosition == PositionForRegiment.player)// si la variable de un hexadecimal es verdadera entonces
+                                                                                 // un hexagono se define como una posición posible
             {
-                hex.MakeMeDeploymentPosition();//display the checkmark and enable the colliders
+                hex.MakeMeDeploymentPosition();// mostrar la marca de verificación y habilitar los colisionadores
             }
         }
     }
-    internal List<BattleHex> GetEnemiesPos()//returns a list with hexes for enemies
+    internal List<BattleHex> GetEnemiesPos()// devuelve una lista con hexágonos para enemigos
     {
-        enemiesPositions.Clear();//clean the list before a new iteration
+        enemiesPositions.Clear();// limpia la lista antes de una nueva iteración
         foreach (BattleHex hex in FieldManager.activeHexList)
         {
-            //check if the position is intended for an enemy unit
+            // comprobar si la posición está destinada a una unidad enemiga
             if (hex.deploymentPos.regimentPosition == PositionForRegiment.enemy)
             {
                 enemiesPositions.Add(hex);
@@ -57,26 +57,25 @@ public class Deployer : MonoBehaviour
         return enemiesPositions;
     }
 
-    private void PlaceEnemies()//places enemy units on the battlefield
+    private void PlaceEnemies()// coloca unidades enemigas en el campo de batalla
     {
-        List<BattleHex> enemiesPositions = GetEnemiesPos();//collects all positions for enemies
-        for (int i = 0; i < enemiesNum; i++)//use loop in order to exclude occupied positions
+        List<BattleHex> enemiesPositions = GetEnemiesPos();// recoge todas las posiciones de los enemigos
+        for (int i = 0; i < enemiesNum; i++)// usa el bucle para excluir posiciones ocupadas
         {       
-            int positionsNum = enemiesPositions.Count();//updates the number of unoccupied positions
-            int randomIndex = UnityEngine.Random.Range(0, positionsNum - 1);//returns a random number that 
-            //will become an element of the list
-            Image landscape = enemiesPositions[randomIndex].Landscape;//parent object to use instantiate method
-            InstantiateEnemy(enemiesToDeploy[i], landscape);//instantiates an enemy
-            //prohibits re-occupying the hex
+            int positionsNum = enemiesPositions.Count();// actualiza el número de posiciones desocupadas
+            int randomIndex = UnityEngine.Random.Range(0, positionsNum - 1);// devuelve un número aleatorio que           
+            Image landscape = enemiesPositions[randomIndex].Landscape;// objeto principal para usar el método de instanciar
+            InstantiateEnemy(enemiesToDeploy[i], landscape);// crea una instancia de un enemigo
+            //prohibiir opcuasion de hexagonos
             enemiesPositions.RemoveAt(randomIndex);
         }
     }
     private void InstantiateEnemy(CharAttributes charAttributes, Image hexPosition)
     {
-        Hero enemy = Instantiate(charAttributes.heroSO, hexPosition.transform);//instantiates an enemy
-        enemy.gameObject.AddComponent<Enemy>();//adds Enemy script to a hero object defined as an enemy
+        Hero enemy = Instantiate(charAttributes.heroSO, hexPosition.transform);// crea una instancia de un enemigo
+        enemy.gameObject.AddComponent<Enemy>();// agrega el script Enemy a un objeto héroe definido como enemigo
 
-        //attaches the AllPosForGroundAI script to a hero object defined as an enemy
+        // adjunta el script AllPosForGroundAI a un objeto héroe definido como enemigo
         enemy.gameObject.AddComponent<AllPosForGroundAI>();
     }
 }

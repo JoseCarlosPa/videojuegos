@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class AvailablePos : MonoBehaviour
 {
-    private int step;//counts iterations
-    List<BattleHex> initialHexes = new List<BattleHex>();//collects neighbouring hexes for evaluated hex
+    private int step;// cuenta las iteraciones
+    List<BattleHex> initialHexes = new List<BattleHex>();// recopila los hexes vecinos para el hex evaluado
 
     public void GetAvailablePositions(int stepsLimit,
-        IAdjacentFinder AdjFinder, IInitialHexes getHexesToCheck)//looks for all positions available
+        IAdjacentFinder AdjFinder, IInitialHexes getHexesToCheck)// busca todas las posiciones disponibles
     {
         BattleHex startingHex = BattleController.currentAtacker.GetComponentInParent<BattleHex>();
-        AdjFinder.GetAdjacentHexesExtended(startingHex);//looks for hexes adjacent to starting hex. Flying unit for now
-        //runs iterations to find all positions available. steps=number of iterations
+        AdjFinder.GetAdjacentHexesExtended(startingHex);// busca hexágonos adyacentes al hex inicial. Unidad voladora por ahora
+        // ejecuta iteraciones para encontrar todas las posiciones disponibles. pasos = número de iteraciones
         for (step = 2; step <= stepsLimit; step++)
         {
-            initialHexes = getHexesToCheck.GetNewInitialHexes();//collects hexes ready for a new iteration
+            initialHexes = getHexesToCheck.GetNewInitialHexes();// recopila hexágonos listos para una nueva iteración
             foreach (BattleHex hex in initialHexes)
             {
-                AdjFinder.GetAdjacentHexesExtended(hex);// defines neighbouring hexes for each hex in the collection
-                hex.isIncluded = true;//defines evaluated hex as available position
+                AdjFinder.GetAdjacentHexesExtended(hex);// define los hexes vecinos para cada hex de la colección
+                hex.isIncluded = true;// define el hexadecimal evaluado como posición disponible
             }
         }
     }

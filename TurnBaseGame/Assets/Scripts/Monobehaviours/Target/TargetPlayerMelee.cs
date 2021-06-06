@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class TargetPlayerMelee : MonoBehaviour, IDefineTarget
 {
-    BattleHex initialHex;//Hex whose neighbors we are looking for
-    List<BattleHex> neighboursToCheck;//collects neighbouring hexes that match the search criteria
-    IEvaluateHex checkHex = new IfItIsTarget();//refers to the interface to access the behavior we need 
+    BattleHex initialHex;// Hex cuyos vecinos estamos buscando
+    List<BattleHex> neighboursToCheck;// recopila los hexágonos vecinos que coinciden con los criterios de búsqueda
+    IEvaluateHex checkHex = new IfItIsTarget();// se refiere a la interfaz para acceder al comportamiento que necesitamos
     Turn turn;
     public void DefineTargets(Hero currentAtacker)
     {
         initialHex = currentAtacker.GetComponentInParent<BattleHex>();
 
-        //collect potencial tergets
+        // recolectar tergets potenciales
         neighboursToCheck = NeighboursFinder.GetAdjacentHexes(initialHex, checkHex);
         int currentAttackerVelocity = BattleController.currentAtacker.heroData.CurrentVelocity;
         if (neighboursToCheck.Count > 0)
         {
             foreach (BattleHex hex in neighboursToCheck)
             {
-                hex.DefineMeAsPotencialTarget();//mark potential target
+                hex.DefineMeAsPotencialTarget();// marcar el objetivo potencial
             }
         }
         else if (neighboursToCheck.Count == 0 && currentAttackerVelocity == 0)
